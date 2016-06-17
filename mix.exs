@@ -26,7 +26,7 @@ defmodule HedwigMopidy.Mixfile do
   defp deps do
     [
       {:hedwig, "~> 1.0.0-rc.4"},
-      {:mopidy, path: "../mopidy"}
+      {:mopidy, git: "git@github.com:trestrantham/mopidy.git"}
     ]
   end
 end
