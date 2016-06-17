@@ -1,0 +1,2 @@
+defmodule HedwigMopidy do
+end
