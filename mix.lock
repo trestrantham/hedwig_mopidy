@@ -2,5 +2,5 @@
   "hedwig": {:hex, :hedwig, "1.0.0-rc.4", "7c134a19bec8508f8dfd308c69d37426e7bcb48f41cc0cb9366ad7514bb7fd40", [:mix], [{:gproc, "~> 0.5", [hex: :gproc, optional: false]}]},
   "httpotion": {:hex, :httpotion, "3.0.0", "4ce0af28f4254bdd0457d0fe065a83787751e0a5b5f5d27030948253be38df5c", [:mix], [{:ibrowse, "~> 4.2", [hex: :ibrowse, optional: false]}]},
   "ibrowse": {:hex, :ibrowse, "4.2.2", "b32b5bafcc77b7277eff030ed32e1acc3f610c64e9f6aea19822abcadf681b4b", [:rebar3], []},
-  "mopidy": {:git, "git@github.com:trestrantham/mopidy.git", "b5f1d5f36d6ec497d843c7cd9162260627480cf3", []},
+  "mopidy": {:git, "git@github.com:trestrantham/mopidy.git", "591d3bd3ea38294c046b85984c5842d3f92d42cc", [branch: "development"]},
   "poison": {:hex, :poison, "2.1.0", "f583218ced822675e484648fa26c933d621373f01c6c76bd00005d7bd4b82e27", [:mix], []}}
