@@ -24,8 +24,8 @@ defmodule HedwigMopidy do
 
   # parsing
 
-  def parse_boolean("off"), do: false
-  def parse_boolean(_), do: true
+  def parse_boolean("off"), do: {"off", false}
+  def parse_boolean(_),     do: {"on", true}
 
   # messages
 
@@ -43,6 +43,9 @@ defmodule HedwigMopidy do
 
   def playing_string(%Mopidy.Track{} = track) do
     playing_message("Playing " <> HedwigMopidy.track_string(track))
+  end
+  def playing_string(%Mopidy.TlTrack{} = tl_track) do
+    playing_string(tl_track.track)
   end
 
   def track_string(%Mopidy.Track{} = track) do

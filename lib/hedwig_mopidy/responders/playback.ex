@@ -83,11 +83,11 @@ defmodule HedwigMopidy.Responders.Playback do
   end
 
   hear ~r/^repeat (?<value>.{2,3})$/i, message do
-    value = HedwigMopidy.parse_boolean(message.matches["value"])
+    {string_value, value} = HedwigMopidy.parse_boolean(message.matches["value"])
 
     response =
       with {:ok, :success} <- Tracklist.set_repeat(value) do
-        HedwigMopidy.notice_message("Repeat is " <> value)
+        HedwigMopidy.notice_message("Repeat is " <> string_value)
       else
         {:error, error_message} -> error_message
         _ -> HedwigMopidy.error_message("Couldn't set repeat")
@@ -97,11 +97,11 @@ defmodule HedwigMopidy.Responders.Playback do
   end
 
   hear ~r/^random (?<value>.{2,3})$/i, message do
-    value = HedwigMopidy.parse_boolean(message.matches["value"])
+    {string_value, value} = HedwigMopidy.parse_boolean(message.matches["value"])
 
     response =
       with {:ok, :success} <- Tracklist.set_random(value) do
-        HedwigMopidy.notice_message("Random is " <> value)
+        HedwigMopidy.notice_message("Random is " <> if string_value)
       else
         {:error, error_message} -> error_message
         _ -> HedwigMopidy.error_message("Couldn't set random")
