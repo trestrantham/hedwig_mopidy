@@ -16,7 +16,7 @@ defmodule HedwigMopidy do
     track.name <> " by " <> artists_string(track.artists)
   end
 
-  def artists_string(List = artists) do
+  def artists_string(artists) do
     artists
     |> Enum.map(fn artist -> artist.name end)
     |> Enum.join(", ")
