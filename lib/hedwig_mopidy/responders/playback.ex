@@ -101,7 +101,7 @@ defmodule HedwigMopidy.Responders.Playback do
 
     response =
       with {:ok, :success} <- Tracklist.set_random(value) do
-        HedwigMopidy.notice_message("Random is " <> if string_value)
+        HedwigMopidy.notice_message("Random is " <> string_value)
       else
         {:error, error_message} -> error_message
         _ -> HedwigMopidy.error_message("Couldn't set random")
