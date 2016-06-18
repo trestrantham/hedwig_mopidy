@@ -8,6 +8,26 @@ defmodule HedwigMopidy do
     Supervisor.start_link([], opts)
   end
 
+  def current_playing do
+    with {:ok, current_track} <- Mopidy.Playback.get_current_track do
+      case current_track do
+        %Mopidy.Track{} = track -> playing_string(track)
+        _ -> notice_message("Nothing is playing")
+      end
+    else
+      {:error, error_message} -> error_message
+      _ -> error_message("Couldn't find who's playing")
+    end
+  end
+
+  def notice_message(message) do
+    "♮ " <> to_string(message)
+  end
+
+  def error_message(message) do
+    "✗ " <> to_string(message)
+  end
+
   def playing_string(%Mopidy.Track{} = track) do
     "♫ Playing " <> HedwigMopidy.track_string(track)
   end
