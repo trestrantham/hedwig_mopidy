@@ -25,7 +25,7 @@ defmodule HedwigMopidy.Responders.Playback do
            {:ok, :success} <- Tracklist.clear,
            {:ok, tracks} when is_list(tracks) <- Tracklist.add(search_results.tracks |> Enum.map(fn(%Track{} = track) -> track.uri end)),
            {:ok, :success} <- Playback.play do
-        HedwigMopidy.current_playing
+        HedwigMopidy.currently_playing
       else
         {:error, error_message} -> error_message
         _ ->
@@ -47,7 +47,7 @@ defmodule HedwigMopidy.Responders.Playback do
            {:ok, :success} <- Tracklist.clear,
            {:ok, tracks} when is_list(tracks) <- Tracklist.add(search_results.tracks |> Enum.map(fn(%Track{} = track) -> track.uri end)),
            {:ok, :success} <- Playback.play do
-        HedwigMopidy.current_playing
+        HedwigMopidy.currently_playing
       else
         {:error, error_message} -> error_message
         _ ->
@@ -63,7 +63,7 @@ defmodule HedwigMopidy.Responders.Playback do
   # what's playing
   # who is playing
   hear ~r/^(what|who).* playing/i, message do
-    response = HedwigMopidy.current_playing
+    response = HedwigMopidy.currently_playing
 
     send message, response
   end
@@ -126,7 +126,7 @@ defmodule HedwigMopidy.Responders.Playback do
   hear ~r/^play$/i, message do
     response = 
       with {:ok, :success} <- Playback.play do
-        HedwigMopidy.current_playing
+        HedwigMopidy.currently_playing
       else
         {:error, error_message} -> error_message
         _ -> HedwigMopidy.error_message("Couldn't play music")
