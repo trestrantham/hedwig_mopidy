@@ -4,6 +4,19 @@ defmodule HedwigMopidy.Responders.Playback do
   alias Mopidy.{Library,Tracklist,Playback}
   alias Mopidy.{Track,TlTrack,SearchResult}
 
+  hear ~r/^mopidy$/i, message do
+    response = "Hedwig Mopidy\nWeb URL: " <> HedwigMopidy.web_url <> "\n"
+
+    response =
+      if HedwigMopidy.icecast_url do
+        response <> "Icecast URL: " <> HedwigMopidy.icecast_url <> "\n"
+      else
+        response
+      end
+
+    send message, HedwigMopidy.playing_message(response)
+  end
+
   hear ~r/play artist (?<artist>.*)/i, message do
     artist = message.matches["artist"]
 

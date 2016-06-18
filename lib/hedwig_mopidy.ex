@@ -63,4 +63,22 @@ defmodule HedwigMopidy do
     |> Enum.map(fn artist -> artist.name end)
     |> Enum.join(", ")
   end
+
+  # system
+
+  def web_url do
+    if api_url = Mopidy.mopidy_api_url do
+      Regex.replace(~r/\/rpc/, api_url, "")
+    else
+      "No web URL set"
+    end
+  end
+
+  @doc """
+  Gets the Icecast URL from :hedwig_mopidy, :icecast_url application env
+  Returns binary
+  """
+  def icecast_url do
+    Application.get_env(:hedwig_mopidy, :icecast_url)
+  end
 end
