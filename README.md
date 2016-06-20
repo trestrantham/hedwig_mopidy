@@ -4,7 +4,8 @@ A Mopidy responder for [Hedwig](https://github.com/hedwig-im/hedwig).
 
 ## Installation
 
-Add hedwig_mopidy to your list of dependencies in `mix.exs`:
+After you [create a Hedwig robot](https://github.com/hedwig-im/hedwig#create-a-robot-module),
+add hedwig_mopidy to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -44,6 +45,9 @@ config :hedwig_mopidy,
   web_url: Regex.replace(~r/\/rpc/, System.get_env("MOPIDY_API_URL"), "")
   icecast_url: System.get_env("HEDWIG_MOPIDY_ICECAST_URL")
 ```
+
+Lastly, add `HedwigMopdy.Responders.Mopidy` as a responder to your robot in
+`mix.exs`.
 
 ## License
 
