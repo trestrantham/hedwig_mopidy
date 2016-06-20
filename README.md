@@ -1,20 +1,50 @@
 # HedwigMopidy
 
-**TODO: Add description**
+A Mopidy responder for [Hedwig](https://github.com/hedwig-im/hedwig).
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+Add hedwig_mopidy to your list of dependencies in `mix.exs`:
 
-  1. Add hedwig_mopidy to your list of dependencies in `mix.exs`:
+```elixir
+def deps do
+  [{:hedwig_mopidy, "~> 0.0.1"}]
+end
+```
 
-        def deps do
-          [{:hedwig_mopidy, "~> 0.0.1"}]
-        end
+Ensure `hedwig_mopidy` is started before your application. Note that
+[mopidy](https://github.com/trestrantham/mopidy) is a dependendy that will be
+started automatically when hedwig_mopidy is started.
 
-  2. Ensure hedwig_mopidy is started before your application:
+```elixir
+def application do
+  [applications: [:hedwig_mopidy]]
+end
+```
 
-        def application do
-          [applications: [:hedwig_mopidy]]
-        end
+Within your application you will need to configure the Mopidy API URL, web URL,
+and optionally, the Icecast URL (see below). You do *not* want to put this
+information in your `config.exs` file! Either put it in a
+`{prod,dev,test}.secret.exs` file which is sourced by `config.exs`, or read the
+values in from the environment:
 
+The Mopidy API URL is a configuration option for
+[mopidy](https://github.com/trestrantham/mopidy):
+
+```elixir
+config :mopidy,
+  api_url: System.get_env("MOPIDY_API_URL")
+```
+
+While the web and Icecast URLs are configuration options for hedwig_mopidy
+itself:
+
+```elixir
+config :hedwig_mopidy,
+  web_url: Regex.replace(~r/\/rpc/, System.get_env("MOPIDY_API_URL"), "")
+  icecast_url: System.get_env("HEDWIG_MOPIDY_ICECAST_URL")
+```
+
+## License
+
+MIT License, see [LICENSE](LICENSE) for details.
