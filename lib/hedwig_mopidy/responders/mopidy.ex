@@ -1,4 +1,4 @@
-defmodule HedwigMopidy.Responders.Playback do
+defmodule HedwigMopidy.Responders.Mopidy do
   use Hedwig.Responder
 
   alias Mopidy.{Library,Tracklist,Playback}
