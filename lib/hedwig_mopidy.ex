@@ -10,8 +10,6 @@ defmodule HedwigMopidy do
     Supervisor.start_link([], opts)
   end
 
-  # lookups
-
   def currently_playing do
     with {:ok, "playing"} <- Playback.get_state,
          {:ok, %Track{} = current_track} <- Playback.get_current_track do
@@ -23,24 +21,12 @@ defmodule HedwigMopidy do
     end
   end
 
-  # parsing
-
   def parse_boolean("off"), do: {"off", false}
   def parse_boolean(_),     do: {"on", true}
 
-  # messages
-
-  def playing_message(message) do
-    "♫ " <> to_string(message)
-  end
-
-  def notice_message(message) do
-    "♮ " <> to_string(message)
-  end
-
-  def error_message(message) do
-    "✗ " <> to_string(message)
-  end
+  def playing_message(message), do: "♫ " <> to_string(message)
+  def notice_message(message), do: "♮ " <> to_string(message)
+  def error_message(message), do: "✗ " <> to_string(message)
 
   def playing_string(%Track{} = track) do
     playing_message("Playing " <> HedwigMopidy.track_string(track))
@@ -65,14 +51,12 @@ defmodule HedwigMopidy do
     |> Enum.join(", ")
   end
 
-  # system
-
+  @doc """
+  Gets the Web URL from :hedwig_mopidy, :web_url application env
+  Returns binary
+  """
   def web_url do
-    if api_url = Mopidy.mopidy_api_url do
-      Regex.replace(~r/\/rpc/, api_url, "")
-    else
-      "No web URL set"
-    end
+    Application.get_env(:hedwig_mopidy, :web_url)
   end
 
   @doc """

@@ -5,11 +5,18 @@ defmodule HedwigMopidy.Responders.Playback do
   alias Mopidy.{Track,TlTrack,SearchResult}
 
   hear ~r/^mopidy$/i, message do
-    response = "Hedwig Mopidy\nWeb URL: " <> HedwigMopidy.web_url <> "\n"
+    response = "Hedwig Mopidy\n"
+    
+    response =
+      if web_url = HedwigMopidy.web_url do
+        response <> "Web URL: " <> web_url <> "\n"
+      else
+        response <> "Web URL: No web URL set\n"
+      end
 
     response =
-      if HedwigMopidy.icecast_url do
-        response <> "Icecast URL: " <> HedwigMopidy.icecast_url <> "\n"
+      if icecast_url = HedwigMopidy.icecast_url do
+        response <> "Icecast URL: " <> icecast_url <> "\n"
       else
         response
       end
