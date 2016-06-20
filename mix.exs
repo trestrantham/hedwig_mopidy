@@ -5,10 +5,13 @@ defmodule HedwigMopidy.Mixfile do
     [
       app: :hedwig_mopidy,
       version: "0.0.1",
-      elixir: "~> 1.3.0-rc.1",
+      elixir: ">= 1.3.0-rc.1",
+      deps: deps,
+      description: description,
+      package: package,
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps
+      docs: [main: HedwigMopidy]
     ]
   end
 
@@ -26,7 +29,21 @@ defmodule HedwigMopidy.Mixfile do
   defp deps do
     [
       {:hedwig, "~> 1.0.0-rc.4"},
-      {:mopidy, github: "trestrantham/mopidy", branch: "development"}
+      {:mopidy, "~> 0.2.0"}
+    ]
+  end
+
+  defp description do
+    """
+    A Mopidy responder for Hedwig
+    """
+  end
+
+  defp package do
+    [
+      maintainers: ["Tres Trantham"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/trestrantham/hedwig_mopidy"}
     ]
   end
 end
