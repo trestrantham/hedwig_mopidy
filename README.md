@@ -14,7 +14,7 @@ end
 ```
 
 Ensure `hedwig_mopidy` is started before your application. Note that
-[mopidy](https://github.com/trestrantham/mopidy) is a dependendy that will be
+[mopidy](https://github.com/trestrantham/mopidy) is a dependency that will be
 started automatically when hedwig_mopidy is started.
 
 ```elixir
@@ -46,7 +46,7 @@ config :hedwig_mopidy,
   icecast_url: System.get_env("HEDWIG_MOPIDY_ICECAST_URL")
 ```
 
-Lastly, add `HedwigMopdy.Responders.Mopidy` as a responder to your robot in
+Lastly, add `HedwigMopidy.Responders.Mopidy` as a responder to your robot in
 `mix.exs`.
 
 ## License
