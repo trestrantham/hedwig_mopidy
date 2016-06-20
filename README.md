@@ -42,7 +42,7 @@ itself:
 
 ```elixir
 config :hedwig_mopidy,
-  web_url: Regex.replace(~r/\/rpc/, System.get_env("MOPIDY_API_URL"), "")
+  web_url: Regex.replace(~r/\/rpc/, System.get_env("MOPIDY_API_URL"), ""),
   icecast_url: System.get_env("HEDWIG_MOPIDY_ICECAST_URL")
 ```
 
