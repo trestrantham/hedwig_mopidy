@@ -9,7 +9,7 @@ add hedwig_mopidy to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:hedwig_mopidy, "~> 0.0.1"}]
+  [{:hedwig_mopidy, "~> 0.0.2"}]
 end
 ```
 
