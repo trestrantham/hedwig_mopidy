@@ -5,7 +5,7 @@ defmodule HedwigMopidy.Mixfile do
     [
       app: :hedwig_mopidy,
       version: "0.0.2",
-      elixir: ">= 1.3.0-rc.1",
+      elixir: ">= 1.3.1",
       deps: deps,
       description: description,
       package: package,
@@ -29,7 +29,7 @@ defmodule HedwigMopidy.Mixfile do
   defp deps do
     [
       {:hedwig, "~> 1.0.0-rc.4"},
-      {:mopidy, "~> 0.2.0"}
+      {:mopidy, "~> 0.3.0"}
     ]
   end
 
